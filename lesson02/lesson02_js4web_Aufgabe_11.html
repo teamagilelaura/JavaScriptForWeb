@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //Use filter() to select all adult (ie. 18 years or older) persons from the data given in exercise 9.
+
+        const persons = [
+            { name: 'Eddard', age: 41 },
+            { name: 'Catelyn', age: 40 },
+            { name: 'Daenerys', age: 16 },
+            { name: 'Tyrion', age: 32 },
+            { name: 'Jon', age: 16 },
+            { name: 'Brandon', age: 10 },
+            { name: 'Sansa', age: 13 },
+            { name: 'Arya', age: 11 },
+            { name: 'Theon', age: 16 },
+            { name: 'Davos', age: 49 },
+            { name: 'Jaime', age: 36 },
+            { name: 'Samwell', age: 17 },
+            { name: 'Cersei', age: 36 },
+            { name: 'Brienne', age: 32 }
+        ]
+
+        const adult = persons.filter(person => person.age > 18)
+
+        //Darstellen untereinander, Daten in JSON ziehen und dann darstellen. 4 sagt wie viele Zeichen eingerückt sein sollen
+        document.write("<pre>" + JSON.stringify(adult, null, 4) + "</pre>")
+    </script>
+</body>
+
+</html>
