@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>
+        Hallo Bierfan!
+    </h1>
+
+    <script>
+        /* fetch()
+    Let's load some data from an external server and display it.*/
+
+        /* 1. Use fetch to load the data from https://api.punkapi.com/v2/beers and log it into the console
+        (remember to parse it to JSON first).*/
+        function LoadData() {
+            fetch("https://api.punkapi.com/v2/beers")
+                .then(response => response.json())
+                .then(beers => {
+                    ShowList(beers)
+                })
+                .catch(error => {
+                    console.error('oh no', error)
+                })
+        }
+
+        /* 2. Build a small site that has a button that when clicked starts the fetch and displays the result in a
+            list.*/
+
+        function ShowList(beers) {
+            let list = document.createElement('li')
+            let AllBeerNames = beers.map[beer => beer.name]
+            document.body.appendChild(list)
+        }
+
+        let button = document.createElement('button')
+        button.innerHTML = 'Beer Information'
+        document.body.appendChild(button)
+
+        document.querySelector("button").addEventListener('click', LoadData)
+
+
+
+    </script>
+</body>
+
+</html>
