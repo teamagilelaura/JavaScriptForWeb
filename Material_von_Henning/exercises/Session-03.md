@@ -106,20 +106,3 @@ Let's load some data from an external server and display it.
 1. Use `fetch` to load the data from `https://api.punkapi.com/v2/beers` and log it into the console (remember to parse it to JSON first).
 
 2. Build a small site that has a button that when clicked starts the `fetch` and displays the result in a list.
-
-### localStorage
-
-We're going to enhance the mini-app we just build with some data storage
-
-1. After loading the data save all of it into localStorage. Check the browser devtools (`Application` tab) and check that you can see the data being saved.
-
-2. If the data is available in localStorage when we load the page we want to display it immediately.
-
-### Geolocation
-
-Create a new mini-app that displays a button. When the button is clicked we want to display the user's location (latitude, longitude) in a paragraph.
-
-### Google Maps
-
--   Follow the official Google tutorial to display a map (incl. getting your own API key): https://developers.google.com/maps/documentation/javascript/tutorial
--   Instead of using the default location research the positional coordinates of Cape Town, South Africa and use it as the center of your map (`zoom: 12` gives a nice result)

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        Where am I?
+    </h1>
+    <button>
+        Show my location
+    </button>
+
+    <div id="map"></div>
+
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -33.9258400, lng: 18.4232200 },
+                zoom: 12
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY=initMap" async defer></script>
+
+    <script>
+
+        function showLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        let { latitude, longitude } = position.coords
+                        console.log('Location: ', latitude, longitude)
+                        let p = document.createElement('p')
+                        p.innerHTML = 'You are here: latitude ' + latitude + ', longitude ' + longitude
+                        document.body.appendChild(p)
+                        map.setCenter({ lat: latitude, lng: longitude })
+                        let marker = new google.maps.Marker({
+                            position: { lat: latitude, lng: longitude },
+                            map: map
+                        }
+                        )
+                    },
+                    (error) => {
+                        console.log('Oh no: ', error)
+                    }
+                )
+            }
+        }
+
+        document.querySelector("button").addEventListener('click', showLocation)
+
+        function LoadLocations() {
+            fetch('./locations.json')
+                .then(response => response.json())
+                .then(locations => {
+                    ShowLocations(locations)
+                })
+                .catch(error => {
+                    console.error('oh no', error)
+                })
+        }
+
+        function ShowLocations
+        // CONTINUE HERE , help:
+        /* function LoadData() {
+            fetch("https://api.punkapi.com/v2/beers")
+                .then(response => response.json())
+                .then(beers => {
+                    ShowList(beers)
+                })
+                .catch(error => {
+                    console.error('oh no', error)
+                })
+        }
+
+        function ShowList(beers) {
+            let list = document.createElement('li')
+            let AllBeerNames = beers.map(beer => beer.name)
+            document.body.appendChild(list)
+        }*/
+
+    </script>
+</body>
+
+</html>

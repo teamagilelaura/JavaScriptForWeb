@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Hamburg",
+        "position": {
+            "lat": 53.5511,
+            "lng": 9.9937
+        }
+    },
+    {
+        "name": "Berlin",
+        "position": {
+            "lat": 52.52,
+            "lng": 13.405
+        }
+    },
+    {
+        "name": "Munich",
+        "position": {
+            "lat": 48.1351,
+            "lng": 11.582
+        }
+    },
+    {
+        "name": "Karlsruhe",
+        "position": {
+            "lat": 49.0069,
+            "lng": 8.4037
+        }
+    },
+    {
+        "name": "Frankfurt",
+        "position": {
+            "lat": 50.1109,
+            "lng": 8.6821
+        }
+    },
+    {
+        "name": "Cologne",
+        "position": {
+            "lat": 50.9375,
+            "lng": 6.9603
+        }
+    },
+    {
+        "name": "Amsterdam",
+        "position": {
+            "lat": 52.3667,
+            "lng": 4.8945
+        }
+    },
+    {
+        "name": "Bremen",
+        "position": {
+            "lat": 53.0793,
+            "lng": 8.8017
+        }
+    }
+]

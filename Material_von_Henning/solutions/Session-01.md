@@ -101,3 +101,69 @@ const personsWithId = persons.map((person, index) => {
     return person
 })
 ```
+
+---
+
+10. Use `filter()` to select all odd numbers of an array.
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+const odds = numbers.filter(number => number % 2 === 1)
+```
+
+---
+
+11. Use `filter()` to select all adult (ie. 18 years or older) persons from the data given in exercise 9.
+
+```js
+persons.filter(person => person.age >= 18)
+```
+
+---
+
+12. Write a function that accepts a search query and uses `filter()` to select all persons that match the query (again use the data from exercise 9).
+
+```js
+function search(query) {
+    return persons.filter(person => person.name.includes(query))
+}
+```
+
+---
+
+13. Use `reduce()` to calculate the sum of all even numbers in an array.
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+const sumOfEvens = numbers.reduce((sum, number) => {
+    if (number % 2 === 0) {
+        return sum + number
+    }
+    return sum
+}, 0)
+```
+
+---
+
+14. Write a function that selects all children (persons under 18 years) and return a list of their names.
+
+```js
+function getChildrenNames(persons) {
+    return persons.filter(person.age < 18).map(person => person.name)
+}
+```
+
+---
+
+15. Count the occurrences of words in a given text.
+
+```js
+const words = text.split(' ')
+const wordCount = words.reduce((result, word) => {
+    if (!result[word]) {
+        result[word] = 0
+    }
+    result[word] += 1
+    return result
+})
+```

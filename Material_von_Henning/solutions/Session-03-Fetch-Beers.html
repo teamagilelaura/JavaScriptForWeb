@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Fetch Beers</title>
+    </head>
+    <body>
+        <button onclick="fetchBeers()">Fetch Beers</button>
+
+        <script>
+            function fetchBeers() {
+                fetch('https://api.punkapi.com/v2/beers')
+                    .then(response => response.json())
+                    .then(beers => {
+                        console.log(beers)
+
+                        const beerListElement = document.createElement('ul')
+                        beers.forEach(beer => {
+                            const beerListItemElement = document.createElement('li')
+                            beerListItemElement.innerText = beer.name + ' - ' + beer.tagline
+                            beerListElement.appendChild(beerListItemElement)
+                        })
+                        document.body.appendChild(beerListElement)
+                    })
+            }
+        </script>
+    </body>
+</html>

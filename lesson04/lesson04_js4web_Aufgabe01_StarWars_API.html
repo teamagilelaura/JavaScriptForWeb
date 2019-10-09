@@ -58,12 +58,17 @@
 
         }
 
-        /* TO BE CONTINUED HERE
-                function ShowQueries(Queries) {
-                    let AllQueries = Queries.map ()
-                }
-                */
-
+        // show last searches (loaded from local storage)
+        let queries = JSON.parse(localStorage.getItem('queries')) // || [] oder:
+        if (queries == 0) {
+            queries = []
+        }
+        if (queries.length > 0) {
+            let previousQueriesJoinedByComma = queries.join(', ')
+            let lastSearchesElement = document.createElement('div')
+            lastSearchesElement.innerText = 'Anzahl Suchanfragen: ' + previousQueriesJoinedByComma
+            document.body.appendChild(lastSearchesElement)
+        }
 
 
     </script>

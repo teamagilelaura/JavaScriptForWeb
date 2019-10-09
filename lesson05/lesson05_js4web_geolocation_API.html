@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show my location</title>
+</head>
+
+<body>
+
+    <h1>
+        Where am I?
+    </h1>
+    <button>
+        Show my location
+    </button>
+
+    <script>
+
+        function showLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        let { latitude, longitude } = position.coords
+                        console.log('Location: ', latitude, longitude)
+                        let p = document.createElement('p')
+                        p.innerHTML = 'You are here: latitude ' + latitude + ', longitude ' + longitude
+                        document.body.appendChild(p)
+                    },
+                    (error) => {
+                        console.log('Oh no: ', error)
+                    }
+                )
+            }
+        }
+
+        document.querySelector("button").addEventListener('click', showLocation)
+
+    </script>
+</body>
+
+</html>
