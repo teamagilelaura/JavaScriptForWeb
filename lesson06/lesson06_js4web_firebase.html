@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        //var firebaseConfig = {}; HINZUFÜGEN
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let database = firebase.firestore() //notwendig für Datenbankenzugriff
+
+        function handleFormSubmit(event) {
+            event.preventDefault()
+            let titleElement = document.querySelector('[name="title"]')
+            let title = titleElement.value
+            let descriptionElement = document.querySelector('[name=description]')
+            let description = descriptionElement.value
+            console.log('Title:', title, 'Description:', description)
+
+            database
+                .collection('Posts')
+                .add({
+                    title: title,
+                    description: description,
+                    postedAt: new Date()
+                })
+                .then(docRef => console.log('Created data:', docRef))
+                .catch(error => console.error('Failed to create data', error))
+        }
+
+    </script>
+</head>
+
+<body>
+    <form>
+        <label for="title">Title</label>
+        <input name="title" placeholder="Write a title..." /> <br> <br>
+        <label for="description">Description</label>
+        <textarea name="description" placeholder="Write a description..."></textarea> <br><br>
+        <button onclick="handleFormSubmit(event)">Submit</button>
+    </form>
+
+</body>
+
+</html>

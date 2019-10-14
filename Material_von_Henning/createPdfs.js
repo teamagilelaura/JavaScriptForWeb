@@ -5,7 +5,9 @@ const files = [
     './exercises/Session-02',
     './exercises/Session-03',
     './exercises/Session-04',
-    './exercises/Session-05'
+    './exercises/Session-05',
+    './exercises/Code-Puzzles',
+    './exercises/Travel-Blog-Features'
 ]
 
 files.forEach(async file => {

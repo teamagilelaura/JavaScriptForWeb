@@ -33,15 +33,6 @@
 
     <div id="map"></div>
 
-    <script>
-        var map;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -33.9258400, lng: 18.4232200 },
-                zoom: 12
-            });
-        }
-    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY=initMap" async defer></script>
 
     <script>
@@ -71,35 +62,91 @@
 
         document.querySelector("button").addEventListener('click', showLocation)
 
-        function LoadLocations() {
-            fetch('./locations.json')
-                .then(response => response.json())
-                .then(locations => {
-                    ShowLocations(locations)
-                })
-                .catch(error => {
-                    console.error('oh no', error)
-                })
+        /* function LoadLocations() {
+             fetch('./locations.json')
+                 .then(response => response.json())
+                 .then(locations => {
+                     ShowLocations(locations)
+                 })
+                 .catch(error => {
+                     console.error('oh no', error)
+                 })
+         }*/
+
+        let cities = [
+            {
+                "name": "Hamburg",
+                "position": {
+                    "lat": 53.5511,
+                    "lng": 9.9937
+                }
+            },
+            {
+                "name": "Berlin",
+                "position": {
+                    "lat": 52.52,
+                    "lng": 13.405
+                }
+            },
+            {
+                "name": "Munich",
+                "position": {
+                    "lat": 48.1351,
+                    "lng": 11.582
+                }
+            },
+            {
+                "name": "Karlsruhe",
+                "position": {
+                    "lat": 49.0069,
+                    "lng": 8.4037
+                }
+            },
+            {
+                "name": "Frankfurt",
+                "position": {
+                    "lat": 50.1109,
+                    "lng": 8.6821
+                }
+            },
+            {
+                "name": "Cologne",
+                "position": {
+                    "lat": 50.9375,
+                    "lng": 6.9603
+                }
+            },
+            {
+                "name": "Amsterdam",
+                "position": {
+                    "lat": 52.3667,
+                    "lng": 4.8945
+                }
+            },
+            {
+                "name": "Bremen",
+                "position": {
+                    "lat": 53.0793,
+                    "lng": 8.8017
+                }
+            }
+        ]
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -33.9258400, lng: 18.4232200 },
+                zoom: 12
+
+            });
+            let bounds = new google.maps.LatLngBounds()
+            //let marker = new google.maps.Marker() überflüssig
+            cities.forEach(city => {
+                let marker = new google.maps.Marker({ position: city.position, map }) //Hier werden die Marker erzeugt
+                bounds.extend(marker.getPosition())
+            })
+            map.fitBounds(bounds)
         }
 
-        function ShowLocations
-        // CONTINUE HERE , help:
-        /* function LoadData() {
-            fetch("https://api.punkapi.com/v2/beers")
-                .then(response => response.json())
-                .then(beers => {
-                    ShowList(beers)
-                })
-                .catch(error => {
-                    console.error('oh no', error)
-                })
-        }
-
-        function ShowList(beers) {
-            let list = document.createElement('li')
-            let AllBeerNames = beers.map(beer => beer.name)
-            document.body.appendChild(list)
-        }*/
 
     </script>
 </body>
