@@ -67,68 +67,67 @@ Next copy over the code from the previous session to display a map centered in C
 
 -   In your project create a new file `locations.json` with the following data:
 
-```json
-[
+```js
+const cities = [
     {
-        "name": "Hamburg",
-        "position": {
-            "lat": 53.5511,
-            "lng": 9.9937
+        name: 'Hamburg',
+        position: {
+            lat: 53.5511,
+            lng: 9.9937
         }
     },
     {
-        "name": "Berlin",
-        "position": {
-            "lat": 52.52,
-            "lng": 13.405
+        name: 'Berlin',
+        position: {
+            lat: 52.52,
+            lng: 13.405
         }
     },
     {
-        "name": "Munich",
-        "position": {
-            "lat": 48.1351,
-            "lng": 11.582
+        name: 'Munich',
+        position: {
+            lat: 48.1351,
+            lng: 11.582
         }
     },
     {
-        "name": "Karlsruhe",
-        "position": {
-            "lat": 49.0069,
-            "lng": 8.4037
+        name: 'Karlsruhe',
+        position: {
+            lat: 49.0069,
+            lng: 8.4037
         }
     },
     {
-        "name": "Frankfurt",
-        "position": {
-            "lat": 50.1109,
-            "lng": 8.6821
+        name: 'Frankfurt',
+        position: {
+            lat: 50.1109,
+            lng: 8.6821
         }
     },
     {
-        "name": "Cologne",
-        "position": {
-            "lat": 50.9375,
-            "lng": 6.9603
+        name: 'Cologne',
+        position: {
+            lat: 50.9375,
+            lng: 6.9603
         }
     },
     {
-        "name": "Amsterdam",
-        "position": {
-            "lat": 52.3667,
-            "lng": 4.8945
+        name: 'Amsterdam',
+        position: {
+            lat: 52.3667,
+            lng: 4.8945
         }
     },
     {
-        "name": "Bremen",
-        "position": {
-            "lat": 53.0793,
-            "lng": 8.8017
+        name: 'Bremen',
+        position: {
+            lat: 53.0793,
+            lng: 8.8017
         }
     }
 ]
 ```
 
--   Use `fetch('./locations.json')` to load this data (don't forget `.then(response => response.json()`))
 -   Loop over the locations and create a new marker for each one
     -   Also ensure that the bounds of the map are extended to include each location
 -   After looping over the map ensure to fit the map to bounds of all locations
