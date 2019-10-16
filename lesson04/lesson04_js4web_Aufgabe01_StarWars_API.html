@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star Wars</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <h1>
+        Star Wars
+    </h1>
+    <form id="form">
+        <input id="input" />
+        <button>Search</button>
+    </form>
+
+    <script>
+
+        let formElement = document.getElementById("form")
+
+        formElement.addEventListener('submit', event => {
+            event.preventDefault()
+            let inputElement = document.getElementById("input")
+            let queries = JSON.parse(localStorage.getItem(`queries`))
+            if (queries === null) queries = []
+            queries.push(inputElement.value)
+            localStorage.setItem(`queries`, JSON.stringify(queries))
+            JSON.parse(localStorage.getItem(`queries`))
+
+            fetch(`https://swapi.co/api/people/?search=${inputElement.value}`)
+                .then(response => response.json())
+                .then(searchResult => {
+                    console.log("Server response:", searchResult)
+                    ShowList(searchResult.results)
+                })
+                .catch(error => {
+                    console.error('Dödööööm, no StarWars figure found', error)
+                })
+        })
+
+        function ShowList(Figures) {
+            //let list = document.createElement('li')
+            let AllStarWarsFigures = Figures.map(StarWars => {
+                console.log(StarWars)
+                let a = document.createElement('a') // create element "a"
+                a.href = StarWars.url // a.href = url of result
+                a.innerText = StarWars.name // a.innerText = name of the result
+                document.body.appendChild(a)// append the a to the body of the document
+
+            })
+
+            //document.body.appendChild(list)
+
+        }
+
+        // show last searches (loaded from local storage)
+        let queries = JSON.parse(localStorage.getItem('queries')) // || [] oder:
+        if (queries == 0) {
+            queries = []
+        }
+        if (queries.length > 0) {
+            let previousQueriesJoinedByComma = queries.join(', ')
+            let lastSearchesElement = document.createElement('div')
+            lastSearchesElement.innerText = 'Anzahl Suchanfragen: ' + previousQueriesJoinedByComma
+            document.body.appendChild(lastSearchesElement)
+        }
+
+
+    </script>
+
+</body>
+
+</html>

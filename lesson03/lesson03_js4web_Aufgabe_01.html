@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <title>DOM Training</title>
+</head>
+
+<body>
+    <form>
+
+        <table>
+            <tr class="name-row">
+                <td>First name</td>
+                <td><input type="text" id="fn" /></td>
+            </tr>
+            <tr class="name-row">
+                <td>Last name</td>
+                <td><input type="text" id="ln" /></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" id="m" name="gender" />male<br />
+                    <input type="radio" id="f" name="gender" />female
+                </td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td><input type="tel" id="tel" /></td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td><input type="email" id="email" /></td>
+            </tr>
+            <tr>
+                <td>Kind of contact</td>
+                <td>
+                    <select>
+                        <option value="ir">Interview Request</option>
+                        <option value="mq">Membership Questions</option>
+                        <option value="pq">Partnership Questions</option>
+                        <option value="tq">Technology Questions</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Comment</td>
+                <td><textarea></textarea></td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        // 1. Select all form elements ( input , select and textarea ) with one query
+        let result1 = document.querySelectorAll("input, select, textarea")
+        console.log(result1)
+        // in console result schreiben und enter --> dann sieht man die ausgelesenen Elemente
+
+        // 2. Select all name-rows
+        let result2 = document.querySelectorAll(".name-row")
+        console.log(result2)
+
+        // 3. Select all inputs with the type (wie bei Attributen) text
+        let result3 = document.querySelectorAll("[type=text]")
+        console.log(result3)
+
+        // 4. Select the first table row ( <tr> ), Hinweis: es gibt keinen Selektor für first, aber ohne All selektiert er das erste
+        let result4 = document.querySelector("tr")
+        console.log(result4)
+
+        // 5. Select the element with the id email
+        let result5 = document.querySelector("[type=email]")
+        console.log(result5)
+
+        // 6. Select the inputs inside the name-row s
+        // Hinweis: mit Leerzeichen kann man in einer Suchanfrage immer tiefer gehen
+        let result6 = document.querySelectorAll(".name-row input")
+        console.log(result6)
+
+        // 7. Select all options of the select
+        let result7 = document.querySelectorAll("option")
+        console.log(result7)
+
+        // 8. Use the result from 7 and save all values of the options into an array. Use map for this.
+        // Hinweis: [... bla] ist array.spread, => heißt, dass es eine Funktion annimmt, weil map eine Funktion braucht, über die sie dann drüber loopt
+        let result8 = [...result7].map(option => { return option.value })
+        console.log(result8)
+
+        // bei Selektion nach input.value würde ich sehen, was der User eingegeben hat.
+        // document.querySelector("input")
+        // document.querySelector("input").value
+        // ir ist die technische Übersetzung von Interview Request, weil wir mit dem String nicht in unserem Code arbeiten       
+
+
+        /*Top it off with some DOM manipulation:
+        1. Add a h1 with the text Contact us as the first element inside the form */
+        let h1 = document.createElement('h1')
+        h1.innerHTML = 'Contact Us'
+        document.body.appendChild(h1)
+
+        let form = document.querySelector("form")
+        console.log(form)
+        document.body.insertBefore(h1, form)
+
+        // 2. Add a submit button as last element to the form
+        let button = document.createElement('button')
+        button.innerHTML = 'Submit'
+        document.body.appendChild(button)
+
+        /* 3. Add a click listener to the submit button. When clicked it should add a banner below the form
+        saying Data successfully sent .*/
+        function displayBanner() {
+            let banner = document.createElement('div')
+            banner.innerHTML = 'Data successfully sent'
+            document.body.appendChild(banner)
+        }
+        document.querySelector("button").addEventListener('click', displayBanner);
+
+
+    </script>
+</body>
+
+</html>

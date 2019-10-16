@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // Use map() to add an id (incrementing, starting at 0) to every person.
+
+        const persons = [
+            { name: 'Eddard', age: 41 },
+            { name: 'Catelyn', age: 40 },
+            { name: 'Daenerys', age: 16 },
+            { name: 'Tyrion', age: 32 },
+            { name: 'Jon', age: 16 },
+            { name: 'Brandon', age: 10 },
+            { name: 'Sansa', age: 13 },
+            { name: 'Arya', age: 11 },
+            { name: 'Theon', age: 16 },
+            { name: 'Davos', age: 49 },
+            { name: 'Jaime', age: 36 },
+            { name: 'Samwell', age: 17 },
+            { name: 'Cersei', age: 36 },
+            { name: 'Brienne', age: 32 }
+        ]
+
+        const personsWithId = persons.map((person, index) => {
+            person.id = index
+            return person
+        })
+
+        console.log({ personsWithId })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Star Wars Search</title>
+        <style>
+            input {
+                width: 50%;
+            }
+            a {
+                display: block;
+            }
+            a + a {
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Star Wars Search</h1>
+        <form id="search-form">
+            <input placeholder="Search for Star Wars characters" id="search-query" />
+            <button>Search</button>
+        </form>
+
+        <script>
+            const formElement = document.getElementById('search-form')
+            formElement.addEventListener('submit', event => {
+                event.preventDefault()
+                const inputElement = document.getElementById('search-query')
+                const searchQuery = inputElement.value
+                console.log('You searched for:', searchQuery)
+
+                // add searchQuery to queries in local storage
+                const queries = JSON.parse(localStorage.getItem('queries')) || []
+                queries.push(searchQuery)
+                localStorage.setItem('queries', JSON.stringify(queries))
+
+                fetch(`https://swapi.co/api/people/?search=${searchQuery}`)
+                    .then(response => response.json())
+                    .then(searchResult => {
+                        console.log('Server response:', searchResult)
+                        searchResult.results.forEach(result => {
+                            const link = document.createElement('a')
+                            link.href = result.url
+                            link.innerText = result.name
+                            document.body.appendChild(link)
+                        })
+                    })
+            })
+
+            // show last searches (loaded from local storage)
+            const queries = JSON.parse(localStorage.getItem('queries')) || []
+            if (queries.length > 0) {
+                const previousQueriesJoinedByComma = queries.join(', ')
+                const lastSearchesElement = document.createElement('p')
+                lastSearchesElement.innerText = 'Previous Searches: ' + previousQueriesJoinedByComma
+                document.body.appendChild(lastSearchesElement)
+            }
+        </script>
+    </body>
+</html>

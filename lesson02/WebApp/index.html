@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+
+<body>
+
+    <h1>
+        Hello World
+    </h1>
+    <button onclick="increaseValue()">Increase value</button>
+    <button onclick="decreaseValue()">Decrease value</button>
+    <p id="value">0</p>
+
+    <script>
+
+        function increaseValue() {
+            const valueElm = document.getElementById('value')
+            valueElm.innerHTML = +valueElm.innerHTML + 1
+        }
+
+        function decreaseValue() {
+            const valueElm = document.getElementById('value')
+            valueElm.innerHTML = +valueElm.innerHTML - 1
+        }
+
+        /*Create a new directory counter
+        Inside that directory create a file called index.html
+        index.html should contain the minimal HTML structure and a h1 saying Hello World
+        Create another file called styles.css and link it from the head of your index.html
+        Add a CSS rule to color the h1 green
+        Open the index.html in your browser and make sure you see the green heading (take a moment to celebrate this success 👏)
+        Now we're going to add some logic to our site and turn it into an actual app. The goal is to have a counter app:
+
+        that displays the current value
+        that has one button to increase the value
+        that has one button to decrease the value
+        First build the UI and then infuse it with life using JavaScript.
+
+        Tips:
+
+        Select an element with document.getElementById("")
+        Set the content of an element with element.innerHTML = ""
+        Click handlers can be attached with onclick="functionName()"*/
+    </script>
+</body>
+
+</html>
