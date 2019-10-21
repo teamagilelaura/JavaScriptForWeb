@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-storage.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        // var firebaseConfig = {};
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+
+        let database = firebase.firestore() //notwendig für Datenbankenzugriff
+        let storage = firebase.storage() //notwendig für Speicherung
+
+        function handleFormSubmit(event) {
+            event.preventDefault()
+            let titleElement = document.querySelector('[name="title"]')
+            let title = titleElement.value
+            let descriptionElement = document.querySelector('[name=description]')
+            let description = descriptionElement.value
+            let inputElement = document.getElementById('file-input')
+            let file = inputElement.files[0]
+            let imageRef = storage.ref('images/${filename}')
+
+            imageRef
+                .put(file)
+                .then(snapshot => {
+                    console.log('Upload file!')
+                    imageRef
+                        .getDownloadURL()
+                        .then(url => {
+                            //let image = document.createElement('img')
+                            //image.src = url
+                            //document.body.appendChild(image)
+                            database
+                                .collection('Posts')
+                                .add({
+                                    title: title,
+                                    description: description,
+                                    imageUrl: url,
+                                    postedAt: new Date()
+                                })
+                                .then(docRef => console.log('Created data:', docRef))
+                                .catch(error => console.error('Failed to create data', error))
+                        })
+                })
+                .catch(error => console.error('Failed to upload', error))
+
+            console.log('Title:', title, 'Description:', description, 'File: ', file)
+        }
+
+        function loadAllData() {
+            database
+                .collection('Posts')
+                .get()
+                .then(snapshot => {
+                    snapshot.forEach(doc => {
+                        // create a `pre` element
+                        let preElement = document.createElement('pre')
+                        // set the innerText to `JSON.stringify(doc.data())`
+                        preElement.innerText = JSON.stringify(doc.data())
+                        // append the element to the body
+                        document.body.appendChild(preElement)
+                    })
+                })
+        }
+
+    </script>
+</head>
+
+<body>
+    <form>
+        <label for="title">Title</label>
+        <input name="title" placeholder="Write a title..." /> <br> <br>
+        <label for="description">Description</label>
+        <textarea name="description" placeholder="Write a description..."></textarea> <br><br>
+        <input id="file-input" type="file" placeholder="Upload a file"></input><br><br>
+        <button onclick="handleFormSubmit(event)">Submit</button>
+        <button type='button' onclick="loadAllData()">Load all entries</button>
+    </form>
+
+    <br>
+
+</body>
+
+</html>
